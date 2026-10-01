@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>bankbik playground</title>
+<meta name="description" content="Bank of Russia BIK directory and Russian requisites checks, offline.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e7c66'/%3E%3Cpath d='M6 13l10-6 10 6zM8 15h3v8H8zm6.5 0h3v8h-3zM21 15h3v8h-3zM6 25h20v2H6z' fill='white'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #f6f5f1;
+  --panel: #ffffff;
+  --ink: #1b1d1c;
+  --muted: #676d69;
+  --line: #e2e0d8;
+  --accent: #0e7c66;
+  --accent-soft: #e2f2ed;
+  --danger: #b3261e;
+  --danger-soft: #fbe9e7;
+  --mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111413;
+    --panel: #1a1e1c;
+    --ink: #eceeed;
+    --muted: #9aa29e;
+    --line: #2c3230;
+    --accent: #3fc6a4;
+    --accent-soft: #173229;
+    --danger: #ff8a80;
+    --danger-soft: #3a1c1a;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 40px 20px 64px; }
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+h1 { margin: 0; font-size: 28px; letter-spacing: -0.02em; }
+h1 span { color: var(--accent); }
+.tagline { margin: 4px 0 0; color: var(--muted); }
+nav { display: flex; gap: 8px; }
+nav a { color: var(--ink); text-decoration: none; border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 6px 12px; font-size: 14px; }
+nav a:hover { border-color: var(--accent); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+label { font-size: 14px; color: var(--muted); }
+input { width: 100%; font: inherit; font-family: var(--mono); font-size: 22px; padding: 14px 16px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--ink); outline: none; }
+input:focus { border-color: var(--accent); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.chips button { font: inherit; font-size: 13px; font-family: var(--mono); border: 1px dashed var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.chips button:hover { color: var(--accent); border-color: var(--accent); }
+.result { margin-top: 24px; }
+.brand { font-size: 30px; font-weight: 700; margin: 0; }
+.formatted { font-family: var(--mono); color: var(--accent); margin: 2px 0 16px; font-size: 18px; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; margin: 0; }
+dt { color: var(--muted); font-size: 14px; }
+dd { margin: 0; overflow-wrap: anywhere; }
+.message { margin-top: 20px; border-radius: 12px; background: var(--danger-soft); color: var(--danger); padding: 14px 16px; }
+.note { color: var(--muted); font-size: 14px; margin-top: 20px; }
+h2 { font-size: 14px; color: var(--muted); font-weight: 600; margin: 28px 0 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+pre { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; font-family: var(--mono); font-size: 14px; overflow-x: auto; margin: 0; }
+.card + .card { margin-top: 20px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+select { font: inherit; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--ink); }
+input.small { font-size: 18px; padding: 10px 14px; }
+.list { list-style: none; margin: 16px 0 0; padding: 0; }
+.list li { border-top: 1px solid var(--line); padding: 10px 0; cursor: pointer; }
+.list li:hover b { color: var(--accent); }
+.list small { color: var(--muted); font-family: var(--mono); }
+.verdict { margin-top: 14px; border-radius: 12px; padding: 12px 16px; }
+.verdict.ok { background: var(--accent-soft); color: var(--accent); }
+.verdict.bad { background: var(--danger-soft); color: var(--danger); }
+@media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+</style>
+
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>bank<span>bik</span></h1>
+      <p class="tagline">Справочник БИК и проверка реквизитов, офлайн</p>
+    </div>
+    <nav>
+      <a href="https://github.com/MrProLopstar/bankbik">GitHub</a>
+      <a href="https://www.npmjs.com/package/bankbik">npm</a>
+    </nav>
+  </header>
+
+  <section class="card">
+    <label for="query">БИК, название банка или SWIFT</label>
+    <input id="query" type="search" autocomplete="off" spellcheck="false" placeholder="сбербанк">
+    <div class="chips" id="examples"></div>
+    <div class="result" id="bank" hidden>
+      <p class="brand" id="bank-name"></p>
+      <p class="formatted" id="bank-bik"></p>
+      <dl id="bank-fields"></dl>
+    </div>
+    <ul class="list" id="list"></ul>
+  </section>
+
+  <section class="card">
+    <label for="kind">Проверка реквизита</label>
+    <div class="row">
+      <select id="kind">
+        <option value="inn">ИНН</option>
+        <option value="kpp">КПП</option>
+        <option value="ogrn">ОГРН</option>
+        <option value="ogrnip">ОГРНИП</option>
+        <option value="snils">СНИЛС</option>
+        <option value="account">Расчётный счёт</option>
+        <option value="corr">Корреспондентский счёт</option>
+      </select>
+      <input id="bik" class="small" autocomplete="off" placeholder="БИК банка" hidden>
+    </div>
+    <div class="row" style="grid-template-columns: 1fr">
+      <input id="value" class="small" autocomplete="off" spellcheck="false" placeholder="7707083893">
+    </div>
+    <div class="verdict" id="verdict" hidden></div>
+  </section>
+
+  <p class="note" id="note"></p>
+  <h2>Установка</h2>
+  <pre>npm install bankbik</pre>
+</main>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

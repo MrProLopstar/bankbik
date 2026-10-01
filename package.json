@@ -1,0 +1,62 @@
+{
+  "name": "bankbik",
+  "version": "0.1.0",
+  "description": "Bank of Russia BIK directory offline and checks for Russian requisites: INN, KPP, OGRN, SNILS, bank accounts",
+  "keywords": [
+    "bik",
+    "bank",
+    "russia",
+    "inn",
+    "kpp",
+    "ogrn",
+    "snils",
+    "requisites",
+    "validation",
+    "бик",
+    "реквизиты",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "MrProLopstar",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "README.ru.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrProLopstar/bankbik.git"
+  },
+  "homepage": "https://github.com/MrProLopstar/bankbik#readme",
+  "bugs": {
+    "url": "https://github.com/MrProLopstar/bankbik/issues"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "data": "node --use-system-ca scripts/fetch-data.ts",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
