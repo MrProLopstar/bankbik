@@ -1,7 +1,7 @@
 # bankbik
 
-[![npm](https://img.shields.io/npm/v/bankbik?color=0e7c66)](https://www.npmjs.com/package/bankbik)
-[![JSR](https://jsr.io/badges/@mrprolopstar/bankbik)](https://jsr.io/@mrprolopstar/bankbik)
+[![npm](https://img.shields.io/npm/v/bankbik?color=0e7c66&cacheSeconds=3600)](https://www.npmjs.com/package/bankbik)
+[![JSR](https://jsr.io/badges/@mrprolopstar/bankbik?v=1)](https://jsr.io/@mrprolopstar/bankbik)
 
 [Русская версия](README.ru.md) · [Playground](https://mrprolopstar.github.io/bankbik/)
 
