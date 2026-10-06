@@ -11,6 +11,17 @@
 npm install bankbik
 ```
 
+Без сборщика пакет можно подключить в браузере прямо с jsDelivr: он сам собирает минифицированный ES-модуль из npm-пакета:
+
+```html
+<script type="module">
+  import { bank } from 'https://cdn.jsdelivr.net/npm/bankbik@0/+esm';
+  console.log(bank('044525225'));
+</script>
+```
+
+`@0` берёт последний релиз 0.x; в продакшене лучше указать точную версию, например `@0.1.0`.
+
 ```ts
 import { bank, searchBanks, validateAccount, validateInn } from 'bankbik';
 

@@ -11,6 +11,17 @@ The Bank of Russia BIK directory offline, plus checks for Russian requisites: IN
 npm install bankbik
 ```
 
+No bundler? Load it in the browser straight from jsDelivr, which builds a minified ES module from the npm package:
+
+```html
+<script type="module">
+  import { bank } from 'https://cdn.jsdelivr.net/npm/bankbik@0/+esm';
+  console.log(bank('044525225'));
+</script>
+```
+
+`@0` follows the latest 0.x release; pin an exact version such as `@0.1.0` in production.
+
 ```ts
 import { bank, searchBanks, validateAccount, validateInn } from 'bankbik';
 
