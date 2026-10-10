@@ -91,7 +91,12 @@ describe('accounts', () => {
 
   it('uses the Bank of Russia key for its own BIKs', () => {
     expect(validateAccount('40102810545370000003', '044525000').valid).toBe(true);
-    expect(validateAccount('40102810545370000003', '004525988').valid).toBe(false);
+  });
+
+  it('checks treasury accounts and Treasury BIKs for format only, since they have no key', () => {
+    expect(validateAccount('03100643000000017300', '004525988').valid).toBe(true);
+    expect(validateAccount('40102810545370000003', '004525988').valid).toBe(true);
+    expect(validateAccount('0310064300000001730', '004525988').valid).toBe(false);
   });
 
   it('reports a correspondent account of another bank', () => {

@@ -64,7 +64,8 @@ const accountKey = (bik: string): string => (/^\d{6}00[012]$/.test(bik) ? `0${bi
 
 /**
  * Checks the control key of a 20-digit account against the BIK of the bank where it is opened.
- * Treasury accounts (`03…`) are checked for format only, their key does not follow this scheme.
+ * Treasury accounts (`03…`) and accounts with a Federal Treasury BIK (`00…`–`02…`) have no control key
+ * and are checked for format only, as 1C and banks do.
  *
  * @example
  * ```ts
@@ -74,7 +75,7 @@ const accountKey = (bik: string): string => (/^\d{6}00[012]$/.test(bik) ? `0${bi
 export const validateAccount = (account: string, bik: string): Validation => {
   const code = clean(bik);
   if (!/^\d{9}$/.test(code)) return fail('FORMAT', 'BIK must be 9 digits');
-  return check(account, 'Account', /^\d{20}$/, '20 digits', (value) => value.startsWith('03') || weighted(accountKey(code) + value, ACCOUNT) % 10 === 0);
+  return check(account, 'Account', /^\d{20}$/, '20 digits', (value) => value.startsWith('03') || /^0[0-2]/.test(code) || weighted(accountKey(code) + value, ACCOUNT) % 10 === 0);
 };
 
 export const checkCorrespondentKey = (account: string, bik: string): Validation => {

@@ -63,7 +63,7 @@ Every check returns `{ valid: true, value }` with the cleaned value (spaces and 
 | `validateAccount(account, bik)` | Control key of a 20-digit account for the bank with this BIK |
 | `validateCorrespondentAccount(account, bik)` | Control key and that the directory lists this account for the BIK |
 
-Treasury accounts (`03…`) are checked for format only: their key does not follow the bank account scheme.
+Treasury accounts (`03…`) and accounts with a Federal Treasury BIK (`00…`–`02…`) have no control key at all, so they are checked for format only, the same way 1C and banks do.
 
 ## Data
 
