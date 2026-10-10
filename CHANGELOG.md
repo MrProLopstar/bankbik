@@ -6,7 +6,7 @@
 
 ## 0.2.0
 
-- Production calendar for 2026-10-08, checked against isdayoff.ru and xmlcalendar.ru day by day
+- Bank of Russia BIK directory as of 2026-10-08
 
 ## 0.1.0
 
