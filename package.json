@@ -1,6 +1,6 @@
 {
   "name": "bankbik",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Bank of Russia BIK directory offline and checks for Russian requisites: INN, KPP, OGRN, SNILS, bank accounts",
   "keywords": [
     "bik",
