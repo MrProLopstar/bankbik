@@ -134,7 +134,7 @@ jobs:
             fs.writeFileSync('jsr.json', JSON.stringify(jsr, null, 2) + '\n');
             const log = fs.readFileSync('CHANGELOG.md', 'utf8');
             const at = log.indexOf('\n## ');
-            const entry = '\n## ' + process.argv[1] + '\n\n- Production calendar for ' + process.argv[2] + ', checked against isdayoff.ru and xmlcalendar.ru day by day\n';
+            const entry = '\n## ' + process.argv[1] + '\n\n- Bank of Russia BIK directory as of ' + process.argv[2] + '\n';
             fs.writeFileSync('CHANGELOG.md', log.slice(0, at) + entry + log.slice(at));
           " "$version" "$date"
           git config user.name "github-actions[bot]"
