@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0
+
+- Bank of Russia BIK directory as of 2026-10-25
+
 ## 0.5.0
 
 - Bank of Russia BIK directory as of 2026-10-19
